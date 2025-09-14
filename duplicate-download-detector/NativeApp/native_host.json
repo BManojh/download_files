@@ -1,0 +1,9 @@
+{
+  "name": "com.notification.duplicate_detector",
+  "description": "A native application to hash files for the Duplicate Download Detector extension.",
+  "path": "C:\\Users\\Manoj\\OneDrive\\Documents\\ddas_project\\download_files\\duplicate-download-detector\\NativeApp\\app.py",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://jdnjcfhfdndlfagmplghfnbeemccfjcp/"
+  ]
+}

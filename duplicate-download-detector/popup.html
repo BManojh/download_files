@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Download History</title>
+    <style>
+        body {
+            width: 480px;
+            padding: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        #duplicate-alert {
+            background-color: #ffeb3b;
+            color: #333;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ffc107;
+            font-weight: bold;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+            position: relative;
+        }
+        #duplicate-alert button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+        }
+        #fileList {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        .file-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #4285f4;
+        }
+        .file-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #222;
+        }
+        .file-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 6px;
+        }
+        .file-path {
+            font-size: 0.8em;
+            color: #888;
+            word-break: break-all;
+            margin-top: 4px;
+            border-top: 1px dashed #eee;
+            padding-top: 6px;
+        }
+        .no-files {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            padding: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            margin: 5px 5px 5px 0;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        #clearAllBtn, #exportBtn {
+            background-color: #f44336;
+            color: white;
+        }
+        #exportBtn {
+            background-color: #4caf50;
+            color: white;
+        }
+        #fileCount {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Downloaded Files</h3>
+    <input type="text" id="searchBox" placeholder="Search by filename or path..." />
+
+    <div id="fileCount">0 files tracked</div>
+
+    <div id="duplicate-alert" style="display:none;"></div>
+
+    <div id="fileList"></div>
+
+    <button id="clearAllBtn">🗑️ Clear All</button>
+    <button id="exportBtn">📤 Export CSV</button>
+
+    <script src="popup.js"></script>
+</body>
+</html>

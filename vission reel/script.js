@@ -1,0 +1,154 @@
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree {
+    constructor() {
+        this.root = null;
+    }
+
+    insert(value) {
+        const newNode = new Node(value);
+        if (!this.root) {
+            this.root = newNode;
+            return;
+        }
+        let current = this.root;
+        while (true) {
+            if (value < current.value) {
+                if (!current.left) {
+                    current.left = newNode;
+                    return;
+                }
+                current = current.left;
+            } else if (value > current.value) {
+                if (!current.right) {
+                    current.right = newNode;
+                    return;
+                }
+                current = current.right;
+            } else {
+                alert("Value already exists in the tree.");
+                return;
+            }
+        }
+    }
+
+    delete(value) {
+        this.root = this._deleteRecursively(this.root, value);
+    }
+
+    _deleteRecursively(node, value) {
+        if (!node) return null;
+        if (value < node.value) {
+            node.left = this._deleteRecursively(node.left, value);
+        } else if (value > node.value) {
+            node.right = this._deleteRecursively(node.right, value);
+        } else {
+            if (!node.left && !node.right) return null;
+            if (!node.left) return node.right;
+            if (!node.right) return node.left;
+            
+            let minNode = this._findMinNode(node.right);
+            node.value = minNode.value;
+            node.right = this._deleteRecursively(node.right, minNode.value);
+        }
+        return node;
+    }
+
+    _findMinNode(node) {
+        while (node.left) node = node.left;
+        return node;
+    }
+
+    search(value) {
+        let current = this.root;
+        while (current) {
+            if (value === current.value) return current;
+            current = value < current.value ? current.left : current.right;
+        }
+        return null;
+    }
+}
+
+const bst = new BinarySearchTree();
+
+function insertNode() {
+    const value = parseInt(document.getElementById("nodeValue").value);
+    if (isNaN(value)) return alert("Enter a valid number");
+    bst.insert(value);
+    displayTree();
+}
+
+function deleteNode() {
+    const value = parseInt(document.getElementById("nodeValue").value);
+    if (isNaN(value)) return alert("Enter a valid number");
+    bst.delete(value);
+    displayTree();
+}
+
+function searchNode() {
+    const value = parseInt(document.getElementById("nodeValue").value);
+    if (isNaN(value)) return alert("Enter a valid number");
+    const node = bst.search(value);
+    displayTree();
+    if (node) highlightNode(value);
+    else alert("Node not found");
+}
+
+function displayTree(node = bst.root, container = document.getElementById("tree")) {
+    container.innerHTML = "";
+    if (!node) return;
+
+    const renderNode = (node, parentContainer) => {
+        if (!node) return;
+
+        const nodeElement = document.createElement("div");
+        nodeElement.classList.add("node");
+        nodeElement.innerText = node.value;
+
+        const nodeContainer = document.createElement("div");
+        nodeContainer.classList.add("node-container");
+        nodeContainer.appendChild(nodeElement);
+
+        const leftContainer = document.createElement("div");
+        const rightContainer = document.createElement("div");
+
+        leftContainer.classList.add("tree-left");
+        rightContainer.classList.add("tree-right");
+
+        parentContainer.appendChild(nodeContainer);
+
+        // Connectors
+        if (node.left) {
+            const leftConnector = document.createElement("div");
+            leftConnector.classList.add("connector");
+            leftContainer.appendChild(leftConnector);
+        }
+        if (node.right) {
+            const rightConnector = document.createElement("div");
+            rightConnector.classList.add("connector");
+            rightContainer.appendChild(rightConnector);
+        }
+
+        nodeContainer.appendChild(leftContainer);
+        nodeContainer.appendChild(rightContainer);
+
+        renderNode(node.left, leftContainer);
+        renderNode(node.right, rightContainer);
+    };
+
+    renderNode(node, container);
+}
+
+function highlightNode(value) {
+    const nodes = document.querySelectorAll(".node");
+    nodes.forEach((node) => {
+        node.classList.remove("highlight");
+        if (parseInt(node.innerText) === value) node.classList.add("highlight");
+    });
+}

@@ -1,0 +1,163 @@
+body {
+  width: 400px;
+  max-height: 500px;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #333;
+}
+
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.stats {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.search-container {
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+#searchBox {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #e74c3c;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+#searchBox:focus {
+  border-color: #3498db;
+}
+
+.controls {
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  gap: 10px;
+}
+
+.controls button {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 15px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#clearAllBtn {
+  background: #e74c3c;
+  color: white;
+}
+
+#clearAllBtn:hover {
+  background: #c0392b;
+}
+
+#exportBtn {
+  background: #27ae60;
+  color: white;
+}
+
+#exportBtn:hover {
+  background: #229954;
+}
+
+.file-list {
+  max-height: 300px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.file-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ecf0f1;
+  transition: background-color 0.2s;
+}
+
+.file-item:hover {
+  background-color: #f8f9fa;
+}
+
+.file-name {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 14px;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+.file-details {
+  font-size: 11px;
+  color: #7f8c8d;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.file-path {
+  font-size: 10px;
+  color: #95a5a6;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.no-files {
+  padding: 40px 20px;
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  cursor: pointer;
+  float: right;
+  margin-top: -2px;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+/* Scrollbar styling */
+.file-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.file-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.file-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.file-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

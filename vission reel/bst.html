@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive BST Visualization</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Keyframes for animations */
+    @keyframes nodeInsert {
+      0% { transform: scale(0.8); background-color: #38a169; }
+      50% { transform: scale(1.1); background-color: #48bb78; }
+      100% { transform: scale(1); background-color: #fff; }
+    }
+
+    @keyframes nodeDelete {
+      0% { opacity: 1; background-color: #e76f51; }
+      100% { opacity: 0; background-color: #f0f2f5; }
+    }
+
+    .inserted-node {
+      animation: nodeInsert 0.5s ease;
+    }
+
+    .deleted-node {
+      animation: nodeDelete 0.5s ease forwards;
+    }
+
+    /* Background animation keyframes */
+    @keyframes gradientAnimation {
+      0% {
+        background-color: #f0f2f5;
+      }
+      50% {
+        background-color: #e9ecef;
+      }
+      100% {
+        background-color: #f0f2f5;
+      }
+    }
+
+    /* Global resets */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Body Styling with animated background */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f0f2f5, #e9ecef);
+      animation: gradientAnimation 10s ease infinite; /* Background animation */
+      padding: 20px;
+    }
+
+    /* Main container styling */
+    .container {
+      background-color: #fff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 20px 30px;
+      max-width: 650px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .container:hover {
+      transform: scale(1.02);
+    }
+
+    /* Header styling */
+    h2 {
+      font-size: 2em;
+      color: #333;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    /* Controls section */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    input[type="number"] {
+      padding: 12px;
+      font-size: 1em;
+      width: 160px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Button styling */
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    /* Canvas styling */
+    canvas {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+      aspect-ratio: 4 / 3;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
